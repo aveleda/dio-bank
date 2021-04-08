@@ -58,6 +58,7 @@ namespace Bank
 
         private static void Sacar()
         {
+            Console.WriteLine("*** Sacar ***");
             Console.Write("Digite o número da conta: ");
 			int indiceConta = int.Parse(Console.ReadLine());
 
@@ -69,6 +70,7 @@ namespace Bank
 
         private static void Transferir()
         {
+            Console.WriteLine("*** Transferir ***");
             Console.Write("Digite o número da conta de origem: ");
 			int indiceContaOrigem = int.Parse(Console.ReadLine());
 
@@ -83,7 +85,7 @@ namespace Bank
 
         private static void ListarContas()
         {
-            Console.WriteLine("Listar contas");
+            Console.WriteLine("*** Listar ***");
 
 			if (listContas.Count == 0)
 			{
@@ -101,19 +103,41 @@ namespace Bank
 
         private static void InserirConta()
         {
-            Console.WriteLine("Inserir nova conta");
+            int entradaTipoConta;
+            double entradaSaldo, entradaCredito;
+            bool check = true;
+
+            Console.WriteLine("** Inserir ***");
 
 			WriteTipoConta();
-			int entradaTipoConta = int.Parse(Console.ReadLine());
+            do {
+                if (!int.TryParse(Console.ReadLine(), out entradaTipoConta)) {
+                    Console.WriteLine("Opção inválida");
+                    continue;
+                }
+                
+				check = (entradaTipoConta < 1) | (entradaTipoConta > Enum.GetValues(typeof(TipoConta)).Length);
+				if (check) {
+					Console.WriteLine("Opção inválida. Por favor, entre com o valor dentro da faixa.");
+				}
+			} while (check);
 
 			Console.Write("Digite o Nome do Cliente: ");
 			string entradaNome = Console.ReadLine();
 
 			Console.Write("Digite o saldo inicial: ");
-			double entradaSaldo = double.Parse(Console.ReadLine());
+            
+            if (!Double.TryParse(Console.ReadLine(), out entradaSaldo)) {
+                Console.WriteLine("Valor inválido");
+                return;
+            }
 
 			Console.Write("Digite o crédito: ");
-			double entradaCredito = double.Parse(Console.ReadLine());
+			
+            if (!Double.TryParse(Console.ReadLine(), out entradaCredito)) {
+                Console.WriteLine("Valor inválido");
+                return;
+            }
 
 			Conta novaConta = new Conta(tipoConta: (TipoConta)entradaTipoConta,
 										saldo: entradaSaldo,
@@ -125,12 +149,12 @@ namespace Bank
 
         private static void WriteTipoConta()
         {
-            Console.Write("Digite ");
             foreach (int i in Enum.GetValues(typeof(TipoConta)))
             {
                 Console.Write("{0}:{1}  ", i, Enum.GetName(typeof(TipoConta), i));
             }
-            Console.Write(" --> ");
+            Console.WriteLine();
+            Console.WriteLine("Digite o tipo de conta: ")
         }
 
         private static string ObterOpcaoUsuario()
