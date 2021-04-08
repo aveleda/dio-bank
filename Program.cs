@@ -154,7 +154,7 @@ namespace Bank
                 Console.Write("{0}:{1}  ", i, Enum.GetName(typeof(TipoConta), i));
             }
             Console.WriteLine();
-            Console.WriteLine("Digite o tipo de conta: ")
+            Console.WriteLine("Digite o tipo de conta: ");
         }
 
         private static string ObterOpcaoUsuario()
