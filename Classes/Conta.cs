@@ -21,18 +21,18 @@ namespace Bank
         {
             // Validação de saldo suficiente
             if (this.Saldo - valorSaque < (this.Credito * -1)){
-                Console.WriteLine('Saldo insufuciente');
-                return false
+                Console.WriteLine("Saldo insuficiente");
+                return false;
             }
             this.Saldo -= valorSaque;
-            Console.WriteLine('Saldo atual da conta de {0} e {1}', this.Nome, this.Saldo);
-            return true
+            Console.WriteLine("Saldo atual da conta de {0} e {1}", this.Nome, this.Saldo);
+            return true;
         }
 
         public void Depositar(double valorDeposito)
         {
             this.Saldo += valorDeposito;
-            Console.WriteLine('Saldo atual da conta de {0} e {1}', this.Nome, this.Saldo);
+            Console.WriteLine("Saldo atual da conta de {0} e {1}", this.Nome, this.Saldo);
         }
 
         public void Transferir(double valorTransferencia, Conta contaDestino)
@@ -44,8 +44,8 @@ namespace Bank
 
         public override string ToString()
         {
-            string retorno = '';
-            retorno += 'TipoConta ' + this.TipoConta + " | ";
+            string retorno = "";
+            retorno += "TipoConta " + this.TipoConta + " | ";
             retorno += "Nome " + this.Nome + " | ";
             retorno += "Saldo " + this.Saldo + " | ";
             retorno += "Crédito " + this.Credito;
