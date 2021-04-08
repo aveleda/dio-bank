@@ -34,7 +34,8 @@ namespace Bank
                         break;
 
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        Console.WriteLine("Opção inválida");
+                        break;
                 }
 
 				opcaoUsuario = ObterOpcaoUsuario();
@@ -45,6 +46,7 @@ namespace Bank
 
         private static void Depositar()
         {
+            Console.WriteLine("*** Depositar ***");
             Console.Write("Digite o número da conta: ");
 			int indiceConta = int.Parse(Console.ReadLine());
 
@@ -101,7 +103,7 @@ namespace Bank
         {
             Console.WriteLine("Inserir nova conta");
 
-			Console.Write("Digite 1 para Conta Fisica ou 2 para Juridica: ");
+			WriteTipoConta();
 			int entradaTipoConta = int.Parse(Console.ReadLine());
 
 			Console.Write("Digite o Nome do Cliente: ");
@@ -121,14 +123,24 @@ namespace Bank
 			listContas.Add(novaConta);
         }
 
+        private static void WriteTipoConta()
+        {
+            Console.Write("Digite ");
+            foreach (int i in Enum.GetValues(typeof(TipoConta)))
+            {
+                Console.Write("{0}:{1}  ", i, Enum.GetName(typeof(TipoConta), i));
+            }
+            Console.Write(" --> ");
+        }
+
         private static string ObterOpcaoUsuario()
 		{
 			Console.WriteLine();
 			Console.WriteLine("*** Bank ***");
 			Console.WriteLine("Informe a opção desejada:");
 
-			Console.WriteLine("1- Listar contas");
-			Console.WriteLine("2- Inserir nova conta");
+			Console.WriteLine("1- Listar");
+			Console.WriteLine("2- Inserir");
 			Console.WriteLine("3- Transferir");
 			Console.WriteLine("4- Sacar");
 			Console.WriteLine("5- Depositar");
