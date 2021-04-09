@@ -25,14 +25,14 @@ namespace Bank
                 return false;
             }
             this.Saldo -= valorSaque;
-            Console.WriteLine("Saldo atual da conta de {0} e {1}", this.Nome, this.Saldo);
+            Console.WriteLine("Saldo atual da conta de {0} é {1}.", this.Nome, this.Saldo);
             return true;
         }
 
         public void Depositar(double valorDeposito)
         {
             this.Saldo += valorDeposito;
-            Console.WriteLine("Saldo atual da conta de {0} e {1}", this.Nome, this.Saldo);
+            Console.WriteLine("Saldo atual da conta de {0} é {1}.", this.Nome, this.Saldo);
         }
 
         public void Transferir(double valorTransferencia, Conta contaDestino)
@@ -47,8 +47,8 @@ namespace Bank
             string retorno = "";
             retorno += "TipoConta " + this.TipoConta + " | ";
             retorno += "Nome " + this.Nome + " | ";
-            retorno += "Saldo " + this.Saldo + " | ";
-            retorno += "Crédito " + this.Credito;
+            retorno += "Saldo " + String.Format("{0:0.00}", this.Saldo) + " | ";
+            retorno += "Crédito " + String.Format("{0:0.00}",this.Credito);
             return retorno;
         }
         
